@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+<body class="bg-dark">
+    <!-- get data  -->
+    <script>
+        // getting students 
+        fetch("http://localhost/Day%2010/TestTask/students/get_student.php").then(response => response.json()).then(data =>{
+            data.forEach(student =>{
+                console.log(student.id);
+                document.getElementById("student").innerHTML +=`
+                    <div class="col-md-6 mb-3">
+                        <div class="card rounded" style="width: 30rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Name: ${student.name}</h5>
+                                <p class="card-text">Email: ${student.email}</p>
+                                <p class="card-text">Phone: ${student.phone}</p>
+                                <a href="students/edit_student.html" class="btn btn-danger mb-3">Edit</a>
+                                <a href="students/delete_student.php?id=${student.id}" class="btn btn-warning mb-3">Delete</a>
+                                </div>
+                                </div>
+                                </div>
+                `;
+            })
+        });
+        // getting courses 
+        fetch("http://localhost/Day%2010/TestTask/courses/get_course.php").then(response => response.json()).then(data =>{
+            data.forEach(course =>{
+                document.getElementById("course").innerHTML +=`
+                <div class="col-md-6 mb-3">
+                    <div class="card rounded" style="width: 30rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">${course.title}</h5>
+                            <p class="card-text">${course.description}</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Price:${course.price}</li>
+                                <li class="list-group-item">Hours:${course.hours}</li>
+                                <a href="courses/delete_course.php?id=${course.id}" class="btn btn-danger w-25 mx-3 my-3">Delete</a>
+                                </ul>
+                                </div>
+                     </div>
+                `;
+            })
+        });
+        // getting enrollments 
+        fetch("http://localhost/Day%2010/TestTask/enrollments/get_enrollment.php").then(response => response.json()).then(data =>{
+            data.forEach(enrollment =>{
+                document.getElementById("enrollment").innerHTML +=`
+                    <div class="col-md-6 mb-3">
+                        <div class="card rounded" style="width: 30rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Student Name: ${enrollment.name}</h5>
+                                <h5 class="card-text">Enrolled in cours: ${enrollment.title}</h5>
+                                <p class="card-text">Descirption: ${enrollment.description}</p>
+                                <p class="card-text">Hours: ${enrollment.hours}</p>
+                                <p class="card-text">Date: ${enrollment.enrollment_date}</p>
+                            </div>
+                            </div>
+                     </div>
+                `;
+            })
+        });
+
+    </script>
+        <div class="container mt-5">
+            <h3 class="text-primary mb-3">Students List:</h3>
+            <a href="students/add_student.html" class="btn btn-success mb-3">+ Add Student</a>
+            <div class="row" id="student">
+            </div>
+        </div>
+        <hr class="outline-light">
+        <div class="container mt-5">
+            <h3 class=" text-danger mb-3">Courses List:</h3>
+            <a href="courses/add_course.html" class="btn btn-success mb-3">+ Add course</a>
+            <div class="row" id="course">
+        </div>
+    </div>
+    <hr>
+    <div class="container mt-5">
+        <h3 class=" text-light mb-3">Enrollments List:</h3>
+        <div class="row" id="enrollment">
+        </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetching</title>
+</head>
+<body>
+    <p id="write"></p>
+    <script>
+        fetch("http://localhost/Day%2010/api.php").then(response =>response.json()).then(data=>{
+                if(data.connection){
+                    data.data.forEach(item=>{
+                        console.log(item);
+                        document.getElementById("write").innerHTML +="name:"+item.name+" age:"+item.age+" city:"+item.city+"<hr>";
+                    })
+                }else{
+                    alert(data.message);
+                }
+        }
+        )
+    </script>
+</body>
+</html>
