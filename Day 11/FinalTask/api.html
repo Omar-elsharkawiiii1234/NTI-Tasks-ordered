@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <script>
+        const data={
+            name:"omar",
+            email:"omar@email.com",
+            age: 25,
+    };
+    fetch("http://localhost/Day%2011/FinalTask/post.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "access-control-allow-origin": "*",
+        },
+        body: JSON.stringify(data)
+    })
+
+    </script>
+</body>
+</html>
