@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch</title>
+</head>
+<body>
+    <div id="writedata"></div>
+    <script>
+        fetch("http://localhost/Day%2012/Test_Api/get.php",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+        ).then(res =>res.json()).then(data=>{
+           data.forEach(element => {
+               document.getElementById("writedata").innerHTML += `<p>name:${element.name} - email:${element.email}-phone:${element.phone}</p>`;
+            });
+        }
+        );
+        function sendData(){
+            const info = {
+                "name": "John",
+                "email": "john@email.com",
+                "phone": "1234567890",
+                "date_of_birth": "1990-01-01"
+            };
+            fetch("http://localhost/Day%2012/Test_Api/post.php",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(info)
+            }
+            ).then(res => res.json()).then(data => {
+                console.log(data);
+            }).catch(err => console.error(err));
+
+        }
+
+    </script>
+    <form action="post.php">
+        <button onclick="sendData()" type="submit">Send Data</button>
+        <p>Click the button to send data to the API.</p>
+    </form>
+</body>
+</html>
