@@ -1,0 +1,17 @@
+{
+    "name": "dell/pdf-demo",
+    "autoload": {
+        "psr-4": {
+            "Dell\\PdfDemo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Omar-elsharkawii",
+            "email": "oa98127@gmail.com"
+        }
+    ],
+    "require": {
+        "dompdf/dompdf": "^3.1"
+    }
+}
